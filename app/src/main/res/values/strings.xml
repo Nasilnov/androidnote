@@ -2,4 +2,12 @@
     <string name="app_name">Блокнот</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="main_1">Меню 1</string>
+    <string name="main_2">Меню 2</string>
+    <string name="main_3">Меню 3</string>
+    <string name="popup_1">Меню 1</string>
+    <string name="popup_2">Меню 2</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="fragment_navigation">Fragment_navigation</string>
 </resources>

@@ -38,19 +38,5 @@ public class NoteActivity extends AppCompatActivity {
             transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             transaction.commit();
         }
-
-//
-//        Intent intent = getIntent();
-//        int idNote = intent.getIntExtra(KEY_NOTE_ID, 0);
-//
-//
-//        Note note = Repository.getOne(idNote, this);
-//
-//        mId = findViewById(R.id.note_id);
-//        mId.setText(String.valueOf(note.getId()));
-//        mTittle = findViewById(R.id.note_tittle);
-//        mTittle.setText(note.getTittle());
-//        mText = findViewById(R.id.note_text);
-//        mText.setText(note.getText());
     }
 }
