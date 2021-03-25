@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 
+import androidx.annotation.NonNull;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -17,27 +19,44 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Repository implements NoteDataSource {
+    private volatile static Repository sInstance;
 
-    private List<Note> mData = new ArrayList<>();
+    private ArrayList<Note> mData = new ArrayList<>();
     private Context mContext;
 
-    public Repository(Context context) {
-        mContext = context;
-        mData = getAll(context);
+    public static Repository getInstance(Context context) {
+        Repository instance = sInstance;
+        if (instance == null) {
+            synchronized (Repository.class) {
+                if (sInstance == null) {
+                    instance = new Repository(context);
+                    sInstance = instance;
+                }
+            }
+        }
+        return instance;
     }
 
-    public static Note getOne(int id, Context context) {
+
+    private Repository(Context context) {
+        mContext = context;
+        mData = getAll();
+    }
+
+    public Note getOne(int id) {
         Note note = null;
-        for (Note noteL: getAll(context) ) {
-            if (noteL.getId() == id) {
+        for (Note noteL: mData ) {
+            int idL = noteL.getId();
+            if (idL == id) {
                 note = noteL;
+                break;
             }
         }
         return note;
     }
 
-    public static ArrayList<Note> getAll(Context context) {
-        return parseJson(loadJSONFromAsset(context)) ;
+    public ArrayList<Note> getAll() {
+        return parseJson(loadJSONFromAsset(mContext)) ;
     }
 
     public static ArrayList<Note> parseJson(JSONObject json) {
@@ -84,6 +103,11 @@ public class Repository implements NoteDataSource {
         }
         return jsonObj;
     }
+    public void editNote(int noteId, Note note) {
+        Note noteSearch = getOne(noteId);
+        int idx = mData.indexOf(noteSearch);
+        mData.set(idx, note);
+    }
 
     public int getIdByPosition(int position) {
         return mData.get(position).getId();
@@ -91,7 +115,8 @@ public class Repository implements NoteDataSource {
 
     @Override
     public List<Note> getNoteData() {
-        return Collections.unmodifiableList(mData);
+        return mData;
+//        return Collections.unmodifiableList(mData);
     }
 
     @Override
@@ -102,5 +127,23 @@ public class Repository implements NoteDataSource {
     @Override
     public int getItemsCount() {
         return mData.size();
+    }
+
+
+
+    @Override
+    public void add(@NonNull Note note) {
+        mData.add(note);
+    }
+
+    @Override
+    public void remove(int position) {
+        mData.remove(position);
+        int i = 1;
+    }
+
+    @Override
+    public void clear() {
+        mData.clear();
     }
 }

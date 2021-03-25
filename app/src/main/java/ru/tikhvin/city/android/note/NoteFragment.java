@@ -53,11 +53,11 @@ public class NoteFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if ( mNoteId == -1 ) {
-            mNoteId = 1;
+            mNoteId = Repository.getInstance(getContext()).getItemAt(0).getId();
         }
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_note, container, false);
-        Note note = Repository.getOne(mNoteId, getContext());
+        Note note = Repository.getInstance(getContext()).getOne(mNoteId);
         TextView id = view.findViewById(R.id.note_id);
         id.setText(String.valueOf(note.getId()));
         TextView tittle = view.findViewById(R.id.note_tittle);
