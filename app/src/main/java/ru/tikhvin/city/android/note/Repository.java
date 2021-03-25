@@ -1,6 +1,8 @@
 package ru.tikhvin.city.android.note;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.content.res.TypedArray;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -9,10 +11,20 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
-public class Repository {
+public class Repository implements NoteDataSource {
+
+    private List<Note> mData = new ArrayList<>();
+    private Context mContext;
+
+    public Repository(Context context) {
+        mContext = context;
+        mData = getAll(context);
+    }
 
     public static Note getOne(int id, Context context) {
         Note note = null;
@@ -73,4 +85,22 @@ public class Repository {
         return jsonObj;
     }
 
+    public int getIdByPosition(int position) {
+        return mData.get(position).getId();
+    }
+
+    @Override
+    public List<Note> getNoteData() {
+        return Collections.unmodifiableList(mData);
+    }
+
+    @Override
+    public Note getItemAt(int idx) {
+        return mData.get(idx);
+    }
+
+    @Override
+    public int getItemsCount() {
+        return mData.size();
+    }
 }
