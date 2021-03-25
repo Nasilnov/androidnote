@@ -33,28 +33,28 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+//        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.toolbar_menu_item_f1: {
-//                f1();
-                return true;
-            }
-            case R.id.toolbar_menu_item_f2: {
-//                f2();
-                return true;
-            }
-            case R.id.toolbar_menu_item_f3: {
-//                f3();
-                return true;
-            }
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.toolbar_menu_item_f1: {
+////                f1();
+//                return true;
+//            }
+//            case R.id.toolbar_menu_item_f2: {
+////                f2();
+//                return true;
+//            }
+//            case R.id.toolbar_menu_item_f3: {
+////                f3();
+//                return true;
+//            }
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     private void initDrawer(Toolbar toolbar) {
         final DrawerLayout drawer = findViewById(R.id.drawer_layout);

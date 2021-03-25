@@ -16,9 +16,13 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-    <style name="Theme.Note.AppBarOverlay"
-        parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
-    <style name="Theme.Note.PopupOverlay"
-        parent="ThemeOverlay.MaterialComponents.Light" />
+    <style name="Theme.Note.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <style name="Theme.Note.PopupOverlay" parent="ThemeOverlay.MaterialComponents.Light" />
+
+    <style name="Theme.Note.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
 </resources>
